@@ -1,38 +1,51 @@
 import 'package:booksy_app/book_details/book_details_screen.dart';
 import 'package:booksy_app/model/book.dart';
+import 'package:booksy_app/services/books_service.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  final List<Book> _books = const [
-    Book(
-      1,
-      "Essentialism: The disciplined pursuit of less",
-      "Greg Mckeown",
-      "Have you ever found yourself struggling with information overload? Have you ever felt both overworked and underutilised? Do you ever feel busy but not productive? If you answered yes to any of these, the way out is to become an Essentialist.",
-      "assets/images/book1.jpg",
-    ),
-    Book(
-        2,
-        "Einstein: His Life and Universe",
-        "Walter Isaacson",
-        "Einstein was a rebel and nonconformist from boyhood days, and these character traits drove both his life and his science. In this narrative, Walter Isaacson explains how his mind worked and the mysteries of the universe that he discovered.",
-        "assets/images/book2.jpg"),
-  ];
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<Book> _books = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getLastBooks();
+  }
+
+  void _getLastBooks() async {
+    var lastBooks = await BooksService().getLastBooks();
+    setState(() {
+      _books = lastBooks;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    var showProgress = _books.isEmpty;
+    var listLength = showProgress ? 3 : _books.length + 2;
     return Container(
       margin: const EdgeInsets.all(16),
       child: ListView.builder(
-        itemCount: _books.length + 2,
+        itemCount: listLength,
         itemBuilder: (context, index) {
           if (index == 0) {
             return const HeaderWidget();
           }
           if (index == 1) {
             return const ListItemHeader();
+          }
+          if (showProgress) {
+            return const Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Center(child: CircularProgressIndicator()),
+            );
           }
           return ListItemBook(_books[index - 2]);
         },
@@ -100,6 +113,8 @@ class ListItemBook extends StatelessWidget {
                             .textTheme
                             .headline6!
                             .copyWith(fontSize: 16),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 5),
                       Text(_book.author,

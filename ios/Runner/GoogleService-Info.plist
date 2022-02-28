@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1025740254544-sp3ln750q8o0d42vbnuqja9a1rr5asj4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1025740254544-sp3ln750q8o0d42vbnuqja9a1rr5asj4</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDVgw9hUxyDLAOtg6ezLeNyh_mcwLzZ3Bw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1025740254544</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.julioandres.booksyApp</string>
+	<key>PROJECT_ID</key>
+	<string>booksy-app-4adb9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>booksy-app-4adb9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1025740254544:ios:70a71f13853cd8ab4d5055</string>
+</dict>
+</plist>

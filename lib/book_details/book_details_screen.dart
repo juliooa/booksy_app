@@ -27,7 +27,7 @@ class BookDetailsScreen extends StatelessWidget {
 }
 
 class BookActionsWidget extends StatelessWidget {
-  final int bookId;
+  final String bookId;
   const BookActionsWidget(this.bookId, {Key? key}) : super(key: key);
 
   @override
@@ -50,12 +50,12 @@ class BookActionsWidget extends StatelessWidget {
     });
   }
 
-  void _addToBookshelf(BuildContext context, int bookId) {
+  void _addToBookshelf(BuildContext context, String bookId) {
     var bookshelfBloc = context.read<BookshelfBloc>();
     bookshelfBloc.add(AddBookToBookshelf(bookId));
   }
 
-  void _removeFromBookshelf(BuildContext context, int bookId) {
+  void _removeFromBookshelf(BuildContext context, String bookId) {
     var bookshelfBloc = context.read<BookshelfBloc>();
     bookshelfBloc.add(RemoveBookFromBookshelf(bookId));
   }
