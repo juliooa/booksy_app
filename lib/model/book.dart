@@ -13,7 +13,7 @@ class Book {
           json['name'] as String,
           json['author'] as String,
           json['summary'] as String,
-          json['coverUrl'] as String,
+          json.containsKey('coverUrl') ? json['coverUrl'] as String : "",
         );
 
   toJson() {
