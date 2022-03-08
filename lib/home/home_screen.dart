@@ -101,7 +101,10 @@ class ListItemBook extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Image.asset(_book.coverUrl),
+                  child: Image.asset(
+                    _book.coverUrl,
+                    width: 120,
+                  ),
                 ),
                 Flexible(
                   child: Column(

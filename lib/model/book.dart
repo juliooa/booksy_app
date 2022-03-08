@@ -13,7 +13,9 @@ class Book {
           json['name'] as String,
           json['author'] as String,
           json['summary'] as String,
-          json.containsKey('coverUrl') ? json['coverUrl'] as String : "",
+          json.containsKey('coverUrl')
+              ? json['coverUrl'] as String
+              : "assets/images/blank_book.png",
         );
 
   toJson() {

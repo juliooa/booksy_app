@@ -107,7 +107,8 @@ class _BookCoverItemState extends State<BookCoverItem> {
       onTap: () {
         _openBookDetails(_book!, context);
       },
-      child: Ink.image(fit: BoxFit.fill, image: AssetImage(_book!.coverUrl)),
+      child:
+          Ink.image(fit: BoxFit.fill, image: _getImageWidget(_book!.coverUrl)),
     );
   }
 
@@ -118,5 +119,13 @@ class _BookCoverItemState extends State<BookCoverItem> {
         builder: (context) => BookDetailsScreen(book),
       ),
     );
+  }
+
+  _getImageWidget(String coverUrl) {
+    if (coverUrl.startsWith("http")) {
+      return NetworkImage(coverUrl);
+    } else {
+      return AssetImage(_book!.coverUrl);
+    }
   }
 }
