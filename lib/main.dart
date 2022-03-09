@@ -5,10 +5,12 @@ import 'package:booksy_app/state.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  MobileAds.instance.initialize();
   runApp(const BooksyApp());
 }
 
@@ -39,9 +41,9 @@ class BottomNavigationWidget extends StatefulWidget {
 class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _sections = [
-    HomeScreen(),
-    CategoriesScreen(),
+  static final List<Widget> _sections = [
+    const HomeScreen(),
+    const CategoriesScreen(),
     BookshelfScreen(),
   ];
 

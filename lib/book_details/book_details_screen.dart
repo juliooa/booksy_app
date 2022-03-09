@@ -2,25 +2,51 @@ import 'package:booksy_app/model/book.dart';
 import 'package:booksy_app/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class BookDetailsScreen extends StatelessWidget {
   final Book _book;
-  const BookDetailsScreen(this._book, {Key? key}) : super(key: key);
+  BookDetailsScreen(this._book, {Key? key}) : super(key: key);
+
+  final BannerAd banner = BannerAd(
+      size: AdSize.banner,
+      adUnitId: "<inserta aquí tu ad id>",
+      request: const AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (Ad ad) => print('Ad loaded.'),
+        onAdFailedToLoad: (Ad ad, LoadAdError error) {
+          ad.dispose();
+          print('Ad failed to load: $error');
+        },
+        onAdOpened: (Ad ad) => print('Ad opened.'),
+        onAdClosed: (Ad ad) => print('Ad closed.'),
+        onAdImpression: (Ad ad) => print('Ad impression.'),
+      ));
 
   @override
   Widget build(BuildContext context) {
+    banner.load();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Detalle Libro"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            BookCoverWidget(_book.coverUrl),
-            BookInfoWidget(_book.title, _book.author, _book.description),
-            BookActionsWidget(_book.id),
-          ],
-        ),
+      body: Column(
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                BookCoverWidget(_book.coverUrl),
+                BookInfoWidget(_book.title, _book.author, _book.description),
+                BookActionsWidget(_book.id),
+              ],
+            ),
+          ),
+          SizedBox(
+            child: AdWidget(ad: banner),
+            width: banner.size.width.toDouble(),
+            height: banner.size.height.toDouble(),
+          ),
+        ],
       ),
     );
   }
