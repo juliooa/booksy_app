@@ -51,7 +51,7 @@ class TileCategory extends StatelessWidget {
           alignment: AlignmentDirectional.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4.0),
-            color: hexToColor(_category.colorBg),
+            color: hexToColor(_category.colorBg, Colors.black),
           ),
           child: Text(
             _category.name,
