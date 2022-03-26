@@ -6,6 +6,8 @@ import 'package:booksy_app/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../utils.dart';
+
 class BookshelfScreen extends StatelessWidget {
   const BookshelfScreen({Key? key}) : super(key: key);
 
@@ -108,7 +110,7 @@ class _BookCoverItemState extends State<BookCoverItem> {
         _openBookDetails(_book!, context);
       },
       child:
-          Ink.image(fit: BoxFit.fill, image: _getImageWidget(_book!.coverUrl)),
+          Ink.image(fit: BoxFit.fill, image: getImageWidget(_book!.coverUrl)),
     );
   }
 
@@ -119,13 +121,5 @@ class _BookCoverItemState extends State<BookCoverItem> {
         builder: (context) => BookDetailsScreen(book),
       ),
     );
-  }
-
-  _getImageWidget(String coverUrl) {
-    if (coverUrl.startsWith("http")) {
-      return NetworkImage(coverUrl);
-    } else {
-      return AssetImage(_book!.coverUrl);
-    }
   }
 }

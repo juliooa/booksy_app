@@ -3,6 +3,8 @@ import 'package:booksy_app/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../utils.dart';
+
 class BookDetailsScreen extends StatelessWidget {
   final Book _book;
   const BookDetailsScreen(this._book, {Key? key}) : super(key: key);
@@ -103,7 +105,7 @@ class BookCoverWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 20, bottom: 20),
       width: 230,
-      child: Image.asset(_coverUrl),
+      child: Image(image: getImageWidget(_coverUrl)),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
           color: Colors.grey.withOpacity(0.5),

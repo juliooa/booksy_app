@@ -3,6 +3,8 @@ import 'package:booksy_app/model/book.dart';
 import 'package:booksy_app/services/books_service.dart';
 import 'package:flutter/material.dart';
 
+import '../utils.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -101,10 +103,7 @@ class ListItemBook extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Image.asset(
-                    _book.coverUrl,
-                    width: 120,
-                  ),
+                  child: Image(image: getImageWidget(_book.coverUrl)),
                 ),
                 Flexible(
                   child: Column(
