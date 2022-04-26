@@ -1,4 +1,4 @@
-Esta app fue creada para el curso **Flutter: Crea apps multiplataforma para Android y iOS** que puedes encontrar acá.
+Esta app fue creada para el curso **[Flutter: Crea apps multiplataforma para Android y iOS](https://www.udemy.com/course/curso-de-flutter-dart-crea-apps-multiplataforma-ios-android/?referralCode=DA222AC82FB3AA8AC5B2)**.
 
 # Booksy App
 
