@@ -6,6 +6,27 @@ void initNotifications(BuildContext context) async {
   var fcmToken = await FirebaseMessaging.instance.getToken();
   print("FCM token: " + (fcmToken ?? "no token"));
 
+  initLocalNotifications(context);
+  initPushNotifications();
+}
+
+void initPushNotifications() {
+  FirebaseMessaging.onMessage.listen(_onRemoteMessageReceived);
+  FirebaseMessaging.onBackgroundMessage(_onBackgroundMessageReceived);
+}
+
+Future<void> _onBackgroundMessageReceived(RemoteMessage message) async {
+  print("Notificación recibida en background");
+  print("Título: " + (message.notification?.title ?? "sin title"));
+  print("Body: " + (message.notification?.body ?? "sin body"));
+}
+
+void _onRemoteMessageReceived(RemoteMessage message) {
+  _showNotification(message.notification?.title ?? "sin título",
+      message.notification?.body ?? "sin body");
+}
+
+void initLocalNotifications(BuildContext context) async {
   FlutterLocalNotificationsPlugin notifications =
       FlutterLocalNotificationsPlugin();
 
@@ -44,11 +65,12 @@ void startReadingReminder() {
   // Setear un recordatorio para que el usuario lea cada cierto tiempo, i.e.: todos los días a las 22.00
   // TODO agregar una pantalla donde los usuarios puedan activar/desactivar y configurar esto.
   Future.delayed(const Duration(seconds: 4), () {
-    _showNotification();
+    _showNotification(
+        "Un mensaje de tu amigo Booksy", "Recordatorio para leer");
   });
 }
 
-void _showNotification() {
+void _showNotification(String title, String body) {
   FlutterLocalNotificationsPlugin notifications =
       FlutterLocalNotificationsPlugin();
   const AndroidNotificationDetails androidSpecifics =
@@ -58,9 +80,6 @@ void _showNotification() {
           priority: Priority.high);
 
   notifications.show(
-      111,
-      "Mensaje de Booksy",
-      "Recuerda leer 15 páginas de tu libro",
-      const NotificationDetails(android: androidSpecifics),
+      111, title, body, const NotificationDetails(android: androidSpecifics),
       payload: "20");
 }
