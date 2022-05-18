@@ -48,8 +48,13 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     initNotifications(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Booksy"),
